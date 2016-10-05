@@ -72,9 +72,9 @@ void read_scene(char* filename, buffer) {
     fprintf(stderr, "Error: Could not open file \"%s\"\n", filename);
     exit(1);
   }
-  
+
   skip_ws(json);
-  
+
   // Find the beginning of the list
   expect_c(json, '[');
 
@@ -91,7 +91,7 @@ void read_scene(char* filename, buffer) {
     }
     if (c == '{') {
       skip_ws(json);
-    
+
       // Parse the object
       char* key = next_string(json);
       if (strcmp(key, "type") != 0) {
@@ -165,6 +165,7 @@ void read_scene(char* filename, buffer) {
   }
   fclose(FILE);
 }
+int read = readb(buffer);
 
 
 
@@ -224,17 +225,25 @@ double* next_vector(FILE* json){
     skip_ws(json);
     v[1] = next_number(json);}
 
-    
+
 A = Xd^2 + Yd^2 + Zd^2
 B = 2 * (Xd * (X0 - Xc) + Yd * (Y0 - Yc) + Zd * (Z0 - Zc))
 C = (X0 - Xc)^2 + (Y0 - Yc)^2 + (Z0 - Zc)^2 - Sr^2
 
 t0, t1 = (- B + (B^2 - 4*C)^1/2) / 2
 
+double eq = sqrt(B) - 4 * A * C;
+if (eq) < 0 ) return -1;
+eq = sqrt(eq);
+double t0 = (-B - eq) / (2 * A);
+if (t0 > 0 ) return t0;
+double t1 = (-B + eq) / (2 * A);
+if( t1 > 0 ) return t1;
+return -1;
 
-    
-    
-    
+
+
+
 
 
 void write_p3(Pixel* buffer, int width, int height, char* filename) {
