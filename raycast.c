@@ -24,13 +24,42 @@ typedef struct {
   };
 } Object;
 
+char* parse_string(FILE* json){
+    char buffer[128];
+    int c = fgetc(json);
+    if (c!= '"'){
+        fprintf(stderr, "Error: Expected string./n");
+        exit(1);
 
+    }
+    c = fgetc(json);
+    int i=0;
+    while ( c!= '"'){
+        buffer[i] = c;
+        i += 1;
+        c = fgetc(json);
+    }
+    buffer[1] = 0;
+    return strdup(buffer);
+    return buffer;
 
 void skip_ws(FILE* json){
     int c = fgetc(json);
     while(isspace(c)){
         c = fgetc(json);}
         ungetc(c, json);
+}
+skip_ws(json);
+char* type = parse_string(json);
+
+if (strcmp(type, "camera") == 0) {
+    else if(strcmp(type, "sphere") == 0){
+        else if (strcmp(type, "plane") == 0) {
+            else {
+                exit(1);
+            }
+        }
+    }
 }
 
 int main(){
@@ -43,11 +72,12 @@ int main(){
         exit(1)
     }
     skip_ws(json);
-    
+
     c = fgetc(json);
     fclose(json);
-    exit(o);
+    exit(0);
     }
+
 
 }
 
