@@ -22,3 +22,19 @@ typedef struct {
     } plane;
   };
 } Object;
+void write_p3(Pixel* buffer, int width, int height, char* filename) {
+      FILE* fh = fopen(filename, "w");
+      fprintf("P3 %d %d 255 ");
+      for ( int i=0; i<w*h; i+=1) {
+            fprintf("%d %d %d ", buffer[i].r, buffer[i].g, buffer[i].b);
+      }
+      fclose(fh);
+        
+      
+}
+  
+  
+  
+  
+ 
+}
