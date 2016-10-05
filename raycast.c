@@ -168,7 +168,37 @@ void read_scene(char* filename, buffer) {
 int read = readb(buffer);
 
 
+double* next_vector(FILE* json){
+    double* V = malloc(3*sizeof(double));
+    v[0] = next_number(json);
+    skip_ws(json);
+    expect_c(json, ',');
+    skip_ws(json);
+    v[1]=next number(json);
+    skip_ws(json);
+    expect_c(json, ',');
+    skip_ws(json);
+    v[1] = next_number(json);}
 
+
+
+
+
+
+A = Xd^2 + Yd^2 + Zd^2
+B = 2 * (Xd * (X0 - Xc) + Yd * (Y0 - Yc) + Zd * (Z0 - Zc))
+C = (X0 - Xc)^2 + (Y0 - Yc)^2 + (Z0 - Zc)^2 - Sr^2
+
+t0, t1 = (- B + (B^2 - 4*C)^1/2) / 2
+
+double eq = sqrt(B) - 4 * A * C;
+if (eq) < 0 ) return -1;
+eq = sqrt(eq);
+double t0 = (-B - eq) / (2 * A);
+if (t0 > 0 ) return t0;
+double t1 = (-B + eq) / (2 * A);
+if( t1 > 0 ) return t1;
+return -1;
 
 int main(){
     FILE* json = fopen("input.json", "r");
@@ -182,6 +212,28 @@ int main(){
     skip_ws(json);
 
     c = fgetc(json);
+    
+    object** objects;
+    objects = malloc(sizeof(object*) *2);
+    objects[0] = malloc(sizeof(object));
+    object[0] -> kind = 0;
+    objects[0] -> sphere.radius = 3;
+    objects[0] -> sphere.center[0] = 0;
+    objects[0] -> sphere.center[1] = 0;
+    objects[0] -> sphere.center[2] = 10;
+    objects[1] = NULL;
+    
+    
+    double cx = 0;
+    double xy = 0;
+    double h = 0.5;
+    double w = 0.5;
+    int M = 15;
+    int N = 15;
+
+    
+    
+    
     fclose(json);
     exit(0);
     }
@@ -213,33 +265,7 @@ double value;
 fscanf(json, "%f", &value);
 return value;}
 
-double* next_vector(FILE* json){
-    double* V = malloc(3*sizeof(double));
-    v[0] = next_number(json);
-    skip_ws(json);
-    expect_c(json, ',');
-    skip_ws(json);
-    v[1]=next number(json);
-    skip_ws(json);
-    expect_c(json, ',');
-    skip_ws(json);
-    v[1] = next_number(json);}
 
-
-A = Xd^2 + Yd^2 + Zd^2
-B = 2 * (Xd * (X0 - Xc) + Yd * (Y0 - Yc) + Zd * (Z0 - Zc))
-C = (X0 - Xc)^2 + (Y0 - Yc)^2 + (Z0 - Zc)^2 - Sr^2
-
-t0, t1 = (- B + (B^2 - 4*C)^1/2) / 2
-
-double eq = sqrt(B) - 4 * A * C;
-if (eq) < 0 ) return -1;
-eq = sqrt(eq);
-double t0 = (-B - eq) / (2 * A);
-if (t0 > 0 ) return t0;
-double t1 = (-B + eq) / (2 * A);
-if( t1 > 0 ) return t1;
-return -1;
 
 
 
