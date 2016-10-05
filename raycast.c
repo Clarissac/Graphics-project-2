@@ -11,7 +11,7 @@ typedef struct {
     struct {
       double center[3];
       double width;
-      double hiehgt;
+      double height;
     } camera;
     struct {
       double center[3];
